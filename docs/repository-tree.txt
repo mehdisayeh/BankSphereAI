@@ -1,0 +1,152 @@
+BankSphereAI/ (generated artifacts and .git/.vs omitted)
+|-- docs/
+|   |-- architecture.md
+|   |-- project-inventory.md
+|   |-- repository-tree.txt
+|   \-- verification.md
+|-- infrastructure/
+|   \-- .gitkeep
+|-- orchestration/
+|   |-- BankSphere.AppHost/
+|   |   |-- Properties/
+|   |   |   \-- launchSettings.json
+|   |   |-- BankSphere.AppHost.csproj
+|   |   \-- Program.cs
+|   \-- BankSphere.ServiceDefaults/
+|       |-- BankSphere.ServiceDefaults.csproj
+|       \-- Extensions.cs
+|-- pipelines/
+|   \-- .gitkeep
+|-- src/
+|   |-- AI/
+|   |   |-- BankSphere.AI.Agents/
+|   |   |   \-- BankSphere.AI.Agents.csproj
+|   |   |-- BankSphere.AI.Api/
+|   |   |   |-- Properties/
+|   |   |   |   \-- launchSettings.json
+|   |   |   |-- appsettings.json
+|   |   |   |-- BankSphere.AI.Api.csproj
+|   |   |   \-- Program.cs
+|   |   |-- BankSphere.AI.Application/
+|   |   |   \-- BankSphere.AI.Application.csproj
+|   |   |-- BankSphere.AI.Contracts/
+|   |   |   \-- BankSphere.AI.Contracts.csproj
+|   |   |-- BankSphere.AI.Domain/
+|   |   |   \-- BankSphere.AI.Domain.csproj
+|   |   |-- BankSphere.AI.Infrastructure/
+|   |   |   \-- BankSphere.AI.Infrastructure.csproj
+|   |   |-- BankSphere.AI.Memory/
+|   |   |   \-- BankSphere.AI.Memory.csproj
+|   |   |-- BankSphere.AI.Orchestration/
+|   |   |   \-- BankSphere.AI.Orchestration.csproj
+|   |   \-- BankSphere.AI.Rag/
+|   |       \-- BankSphere.AI.Rag.csproj
+|   |-- BuildingBlocks/
+|   |   |-- BankSphere.EventBus/
+|   |   |   \-- BankSphere.EventBus.csproj
+|   |   |-- BankSphere.Observability/
+|   |   |   |-- BankSphere.Observability.csproj
+|   |   |   \-- ServiceDefaults.cs
+|   |   |-- BankSphere.Security/
+|   |   |   \-- BankSphere.Security.csproj
+|   |   \-- BankSphere.SharedKernel/
+|   |       |-- AggregateRoot.cs
+|   |       |-- BankSphere.SharedKernel.csproj
+|   |       |-- Entity.cs
+|   |       |-- Error.cs
+|   |       |-- IDomainEvent.cs
+|   |       \-- Result.cs
+|   |-- Gateway/
+|   |   \-- BankSphere.Gateway/
+|   |       |-- BankSphere.Gateway.csproj
+|   |       \-- Program.cs
+|   |-- Integrations/
+|   |   |-- BankSphere.A2AHost/
+|   |   |   |-- BankSphere.A2AHost.csproj
+|   |   |   \-- Program.cs
+|   |   \-- BankSphere.McpServer/
+|   |       |-- BankSphere.McpServer.csproj
+|   |       \-- Program.cs
+|   \-- Services/
+|       |-- Accounts/
+|       |   |-- BankSphere.Accounts.Api/
+|       |   |   |-- BankSphere.Accounts.Api.csproj
+|       |   |   \-- Program.cs
+|       |   |-- BankSphere.Accounts.Application/
+|       |   |   \-- BankSphere.Accounts.Application.csproj
+|       |   |-- BankSphere.Accounts.Domain/
+|       |   |   \-- BankSphere.Accounts.Domain.csproj
+|       |   \-- BankSphere.Accounts.Infrastructure/
+|       |       \-- BankSphere.Accounts.Infrastructure.csproj
+|       |-- Compliance/
+|       |   |-- BankSphere.Compliance.Api/
+|       |   |   |-- BankSphere.Compliance.Api.csproj
+|       |   |   \-- Program.cs
+|       |   |-- BankSphere.Compliance.Application/
+|       |   |   \-- BankSphere.Compliance.Application.csproj
+|       |   |-- BankSphere.Compliance.Domain/
+|       |   |   \-- BankSphere.Compliance.Domain.csproj
+|       |   \-- BankSphere.Compliance.Infrastructure/
+|       |       \-- BankSphere.Compliance.Infrastructure.csproj
+|       |-- CreditAssessment/
+|       |   |-- BankSphere.CreditAssessment.Api/
+|       |   |   |-- BankSphere.CreditAssessment.Api.csproj
+|       |   |   \-- Program.cs
+|       |   |-- BankSphere.CreditAssessment.Application/
+|       |   |   \-- BankSphere.CreditAssessment.Application.csproj
+|       |   |-- BankSphere.CreditAssessment.Domain/
+|       |   |   \-- BankSphere.CreditAssessment.Domain.csproj
+|       |   \-- BankSphere.CreditAssessment.Infrastructure/
+|       |       \-- BankSphere.CreditAssessment.Infrastructure.csproj
+|       |-- Customers/
+|       |   |-- BankSphere.Customers.Api/
+|       |   |   |-- BankSphere.Customers.Api.csproj
+|       |   |   \-- Program.cs
+|       |   |-- BankSphere.Customers.Application/
+|       |   |   \-- BankSphere.Customers.Application.csproj
+|       |   |-- BankSphere.Customers.Domain/
+|       |   |   \-- BankSphere.Customers.Domain.csproj
+|       |   \-- BankSphere.Customers.Infrastructure/
+|       |       \-- BankSphere.Customers.Infrastructure.csproj
+|       |-- FraudInvestigation/
+|       |   |-- BankSphere.FraudInvestigation.Api/
+|       |   |   |-- BankSphere.FraudInvestigation.Api.csproj
+|       |   |   \-- Program.cs
+|       |   |-- BankSphere.FraudInvestigation.Application/
+|       |   |   \-- BankSphere.FraudInvestigation.Application.csproj
+|       |   |-- BankSphere.FraudInvestigation.Domain/
+|       |   |   \-- BankSphere.FraudInvestigation.Domain.csproj
+|       |   \-- BankSphere.FraudInvestigation.Infrastructure/
+|       |       \-- BankSphere.FraudInvestigation.Infrastructure.csproj
+|       \-- Transactions/
+|           |-- BankSphere.Transactions.Api/
+|           |   |-- BankSphere.Transactions.Api.csproj
+|           |   \-- Program.cs
+|           |-- BankSphere.Transactions.Application/
+|           |   \-- BankSphere.Transactions.Application.csproj
+|           |-- BankSphere.Transactions.Domain/
+|           |   \-- BankSphere.Transactions.Domain.csproj
+|           \-- BankSphere.Transactions.Infrastructure/
+|               \-- BankSphere.Transactions.Infrastructure.csproj
+|-- tests/
+|   |-- Architecture/
+|   |   \-- README.md
+|   |-- BankSphere.Foundation.Tests/
+|   |   |-- BankSphere.Foundation.Tests.csproj
+|   |   \-- FoundationTests.cs
+|   |-- Functional/
+|   |   \-- README.md
+|   |-- Integration/
+|   |   \-- README.md
+|   \-- Unit/
+|       \-- README.md
+|-- workers/
+|   \-- .gitkeep
+|-- .editorconfig
+|-- .gitignore
+|-- BankSphereAI.slnx
+|-- Directory.Build.props
+|-- Directory.Packages.props
+|-- global.json
+|-- NuGet.Config
+\-- README.md

@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../BankSphere.FraudInvestigation.Application/BankSphere.FraudInvestigation.Application.csproj" />
+    <ProjectReference Include="../BankSphere.FraudInvestigation.Domain/BankSphere.FraudInvestigation.Domain.csproj" />
+  </ItemGroup>
+</Project>

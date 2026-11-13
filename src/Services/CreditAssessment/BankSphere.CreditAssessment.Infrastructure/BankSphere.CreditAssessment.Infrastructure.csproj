@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../BankSphere.CreditAssessment.Application/BankSphere.CreditAssessment.Application.csproj" />
+    <ProjectReference Include="../BankSphere.CreditAssessment.Domain/BankSphere.CreditAssessment.Domain.csproj" />
+  </ItemGroup>
+</Project>

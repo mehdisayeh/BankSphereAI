@@ -1,0 +1,6 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../BankSphere.AI.Application/BankSphere.AI.Application.csproj" />
+    <ProjectReference Include="../BankSphere.AI.Domain/BankSphere.AI.Domain.csproj" />
+  </ItemGroup>
+</Project>

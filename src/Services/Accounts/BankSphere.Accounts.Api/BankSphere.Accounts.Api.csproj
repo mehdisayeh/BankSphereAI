@@ -1,0 +1,7 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <ItemGroup>
+    <ProjectReference Include="../BankSphere.Accounts.Application/BankSphere.Accounts.Application.csproj" />
+    <ProjectReference Include="../BankSphere.Accounts.Infrastructure/BankSphere.Accounts.Infrastructure.csproj" />
+    <ProjectReference Include="../../../../orchestration/BankSphere.ServiceDefaults/BankSphere.ServiceDefaults.csproj" />
+  </ItemGroup>
+</Project>

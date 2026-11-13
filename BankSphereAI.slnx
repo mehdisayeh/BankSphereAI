@@ -1,0 +1,71 @@
+<Solution>
+  <Folder Name="/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/BankSphere.EventBus/BankSphere.EventBus.csproj" />
+    <Project Path="src/BuildingBlocks/BankSphere.Observability/BankSphere.Observability.csproj" />
+    <Project Path="src/BuildingBlocks/BankSphere.Security/BankSphere.Security.csproj" />
+    <Project Path="src/BuildingBlocks/BankSphere.SharedKernel/BankSphere.SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/Services/">
+  </Folder>
+  <Folder Name="/Services/Accounts/">
+    <Project Path="src/Services/Accounts/BankSphere.Accounts.Api/BankSphere.Accounts.Api.csproj" />
+    <Project Path="src/Services/Accounts/BankSphere.Accounts.Application/BankSphere.Accounts.Application.csproj" />
+    <Project Path="src/Services/Accounts/BankSphere.Accounts.Domain/BankSphere.Accounts.Domain.csproj" />
+    <Project Path="src/Services/Accounts/BankSphere.Accounts.Infrastructure/BankSphere.Accounts.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Compliance/">
+    <Project Path="src/Services/Compliance/BankSphere.Compliance.Api/BankSphere.Compliance.Api.csproj" />
+    <Project Path="src/Services/Compliance/BankSphere.Compliance.Application/BankSphere.Compliance.Application.csproj" />
+    <Project Path="src/Services/Compliance/BankSphere.Compliance.Domain/BankSphere.Compliance.Domain.csproj" />
+    <Project Path="src/Services/Compliance/BankSphere.Compliance.Infrastructure/BankSphere.Compliance.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/CreditAssessment/">
+    <Project Path="src/Services/CreditAssessment/BankSphere.CreditAssessment.Api/BankSphere.CreditAssessment.Api.csproj" />
+    <Project Path="src/Services/CreditAssessment/BankSphere.CreditAssessment.Application/BankSphere.CreditAssessment.Application.csproj" />
+    <Project Path="src/Services/CreditAssessment/BankSphere.CreditAssessment.Domain/BankSphere.CreditAssessment.Domain.csproj" />
+    <Project Path="src/Services/CreditAssessment/BankSphere.CreditAssessment.Infrastructure/BankSphere.CreditAssessment.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Customers/">
+    <Project Path="src/Services/Customers/BankSphere.Customers.Api/BankSphere.Customers.Api.csproj" />
+    <Project Path="src/Services/Customers/BankSphere.Customers.Application/BankSphere.Customers.Application.csproj" />
+    <Project Path="src/Services/Customers/BankSphere.Customers.Domain/BankSphere.Customers.Domain.csproj" />
+    <Project Path="src/Services/Customers/BankSphere.Customers.Infrastructure/BankSphere.Customers.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/FraudInvestigation/">
+    <Project Path="src/Services/FraudInvestigation/BankSphere.FraudInvestigation.Api/BankSphere.FraudInvestigation.Api.csproj" />
+    <Project Path="src/Services/FraudInvestigation/BankSphere.FraudInvestigation.Application/BankSphere.FraudInvestigation.Application.csproj" />
+    <Project Path="src/Services/FraudInvestigation/BankSphere.FraudInvestigation.Domain/BankSphere.FraudInvestigation.Domain.csproj" />
+    <Project Path="src/Services/FraudInvestigation/BankSphere.FraudInvestigation.Infrastructure/BankSphere.FraudInvestigation.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/Services/Transactions/">
+    <Project Path="src/Services/Transactions/BankSphere.Transactions.Api/BankSphere.Transactions.Api.csproj" />
+    <Project Path="src/Services/Transactions/BankSphere.Transactions.Application/BankSphere.Transactions.Application.csproj" />
+    <Project Path="src/Services/Transactions/BankSphere.Transactions.Domain/BankSphere.Transactions.Domain.csproj" />
+    <Project Path="src/Services/Transactions/BankSphere.Transactions.Infrastructure/BankSphere.Transactions.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/AI/">
+    <Project Path="src/AI/BankSphere.AI.Agents/BankSphere.AI.Agents.csproj" />
+    <Project Path="src/AI/BankSphere.AI.Api/BankSphere.AI.Api.csproj" />
+    <Project Path="src/AI/BankSphere.AI.Application/BankSphere.AI.Application.csproj" />
+    <Project Path="src/AI/BankSphere.AI.Contracts/BankSphere.AI.Contracts.csproj" />
+    <Project Path="src/AI/BankSphere.AI.Domain/BankSphere.AI.Domain.csproj" />
+    <Project Path="src/AI/BankSphere.AI.Infrastructure/BankSphere.AI.Infrastructure.csproj" />
+    <Project Path="src/AI/BankSphere.AI.Memory/BankSphere.AI.Memory.csproj" />
+    <Project Path="src/AI/BankSphere.AI.Orchestration/BankSphere.AI.Orchestration.csproj" />
+    <Project Path="src/AI/BankSphere.AI.Rag/BankSphere.AI.Rag.csproj" />
+  </Folder>
+  <Folder Name="/Integrations/">
+    <Project Path="src/Integrations/BankSphere.A2AHost/BankSphere.A2AHost.csproj" />
+    <Project Path="src/Integrations/BankSphere.McpServer/BankSphere.McpServer.csproj" />
+  </Folder>
+  <Folder Name="/Gateway/">
+    <Project Path="src/Gateway/BankSphere.Gateway/BankSphere.Gateway.csproj" />
+  </Folder>
+  <Folder Name="/Orchestration/">
+    <Project Path="orchestration/BankSphere.AppHost/BankSphere.AppHost.csproj" />
+    <Project Path="orchestration/BankSphere.ServiceDefaults/BankSphere.ServiceDefaults.csproj" />
+  </Folder>
+  <Folder Name="/Tests/">
+    <Project Path="tests/BankSphere.Foundation.Tests/BankSphere.Foundation.Tests.csproj" />
+  </Folder>
+</Solution>

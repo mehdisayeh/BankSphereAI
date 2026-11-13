@@ -1,0 +1,12 @@
+{
+  "profiles": {
+    "BankSphere.A2AHost": {
+      "commandName": "Project",
+      "launchBrowser": true,
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      },
+      "applicationUrl": "https://localhost:57743;http://localhost:57744"
+    }
+  }
+}
