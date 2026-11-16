@@ -51,7 +51,8 @@ public sealed class FoundationTests
             ["BankSphere.SharedKernel"] = [],
             ["BankSphere.Observability"] = [],
             ["BankSphere.EventBus"] = [],
-            ["BankSphere.Security"] = [],
+            ["BankSphere.Security"] = ["BankSphere.SharedKernel"],
+            ["BankSphere.Persistence"] = ["BankSphere.SharedKernel"],
             ["BankSphere.AI.Domain"] = ["BankSphere.SharedKernel"],
             ["BankSphere.AI.Application"] = ["BankSphere.AI.Domain"],
             ["BankSphere.AI.Infrastructure"] = ["BankSphere.AI.Application", "BankSphere.AI.Domain"],
@@ -64,7 +65,7 @@ public sealed class FoundationTests
             ["BankSphere.McpServer"] = ["BankSphere.ServiceDefaults"],
             ["BankSphere.A2AHost"] = ["BankSphere.ServiceDefaults"],
             ["BankSphere.Gateway"] = ["BankSphere.ServiceDefaults"],
-            ["BankSphere.ServiceDefaults"] = ["BankSphere.Observability"]
+            ["BankSphere.ServiceDefaults"] = ["BankSphere.Observability", "BankSphere.Security"]
         };
         string[] contexts = ["Customers", "Accounts", "Transactions", "FraudInvestigation", "Compliance", "CreditAssessment"];
         var hosts = new List<string> { "BankSphere.AI.Api", "BankSphere.McpServer", "BankSphere.A2AHost", "BankSphere.Gateway" };
@@ -73,11 +74,16 @@ public sealed class FoundationTests
             var prefix = $"BankSphere.{context}";
             allowed[$"{prefix}.Domain"] = ["BankSphere.SharedKernel"];
             allowed[$"{prefix}.Application"] = [$"{prefix}.Domain"];
-            allowed[$"{prefix}.Infrastructure"] = [$"{prefix}.Application", $"{prefix}.Domain"];
+            allowed[$"{prefix}.Infrastructure"] = [$"{prefix}.Application", $"{prefix}.Domain", "BankSphere.Persistence"];
             allowed[$"{prefix}.Api"] = [$"{prefix}.Application", $"{prefix}.Infrastructure", "BankSphere.ServiceDefaults"];
             hosts.Add($"{prefix}.Api");
         }
 
+        allowed["BankSphere.Identity.Domain"] = ["BankSphere.SharedKernel"];
+        allowed["BankSphere.Identity.Application"] = ["BankSphere.Identity.Domain"];
+        allowed["BankSphere.Identity.Infrastructure"] = ["BankSphere.Identity.Application", "BankSphere.Identity.Domain", "BankSphere.Persistence", "BankSphere.Security"];
+        allowed["BankSphere.Identity.Api"] = ["BankSphere.Identity.Application", "BankSphere.Identity.Infrastructure", "BankSphere.ServiceDefaults"];
+        hosts.Add("BankSphere.Identity.Api");
         allowed["BankSphere.AppHost"] = [.. hosts];
         var projects = Directory.GetFiles(Path.Combine(root, "src"), "*.csproj", SearchOption.AllDirectories)
             .Concat(Directory.GetFiles(Path.Combine(root, "orchestration"), "*.csproj", SearchOption.AllDirectories))
@@ -98,6 +104,23 @@ public sealed class FoundationTests
             {
                 Assert.Empty(document.Descendants("PackageReference"));
                 Assert.Empty(document.Descendants("FrameworkReference"));
+            }
+        }
+    }
+
+    [Fact]
+    public void AllProjectsInheritTheNet9Target()
+    {
+        var root = FindRepositoryRoot();
+        var properties = XDocument.Load(Path.Combine(root, "Directory.Build.props"));
+        Assert.Equal("net9.0", Assert.Single(properties.Descendants("TargetFramework")).Value);
+        foreach (var folder in ProjectRoots)
+        {
+            foreach (var project in Directory.GetFiles(Path.Combine(root, folder), "*.csproj", SearchOption.AllDirectories))
+            {
+                var document = XDocument.Load(project);
+                Assert.Empty(document.Descendants("TargetFramework"));
+                Assert.Empty(document.Descendants("TargetFrameworks"));
             }
         }
     }

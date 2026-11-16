@@ -1,0 +1,5 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../BankSphere.Identity.Domain/BankSphere.Identity.Domain.csproj" />
+  </ItemGroup>
+</Project>

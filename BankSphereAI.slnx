@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/BuildingBlocks/">
+    <Project Path="src/BuildingBlocks/BankSphere.Persistence/BankSphere.Persistence.csproj" />
     <Project Path="src/BuildingBlocks/BankSphere.EventBus/BankSphere.EventBus.csproj" />
     <Project Path="src/BuildingBlocks/BankSphere.Observability/BankSphere.Observability.csproj" />
     <Project Path="src/BuildingBlocks/BankSphere.Security/BankSphere.Security.csproj" />
@@ -37,6 +38,12 @@
     <Project Path="src/Services/FraudInvestigation/BankSphere.FraudInvestigation.Domain/BankSphere.FraudInvestigation.Domain.csproj" />
     <Project Path="src/Services/FraudInvestigation/BankSphere.FraudInvestigation.Infrastructure/BankSphere.FraudInvestigation.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/Services/Identity/">
+    <Project Path="src/Services/Identity/BankSphere.Identity.Api/BankSphere.Identity.Api.csproj" />
+    <Project Path="src/Services/Identity/BankSphere.Identity.Application/BankSphere.Identity.Application.csproj" />
+    <Project Path="src/Services/Identity/BankSphere.Identity.Domain/BankSphere.Identity.Domain.csproj" />
+    <Project Path="src/Services/Identity/BankSphere.Identity.Infrastructure/BankSphere.Identity.Infrastructure.csproj" />
+  </Folder>
   <Folder Name="/Services/Transactions/">
     <Project Path="src/Services/Transactions/BankSphere.Transactions.Api/BankSphere.Transactions.Api.csproj" />
     <Project Path="src/Services/Transactions/BankSphere.Transactions.Application/BankSphere.Transactions.Application.csproj" />
@@ -67,5 +74,13 @@
   </Folder>
   <Folder Name="/Tests/">
     <Project Path="tests/BankSphere.Foundation.Tests/BankSphere.Foundation.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Tests/Integration/">
+    <Project Path="tests/Integration/BankSphere.Identity.IntegrationTests/BankSphere.Identity.IntegrationTests.csproj" />
+    <Project Path="tests/Integration/BankSphere.Persistence.Tests/BankSphere.Persistence.Tests.csproj" />
+  </Folder>
+  <Folder Name="/Tests/Unit/">
+    <Project Path="tests/Unit/BankSphere.Banking.Tests/BankSphere.Banking.Tests.csproj" />
+    <Project Path="tests/Unit/BankSphere.Identity.Tests/BankSphere.Identity.Tests.csproj" />
   </Folder>
 </Solution>

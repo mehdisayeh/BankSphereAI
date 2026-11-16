@@ -3,4 +3,8 @@
     <ProjectReference Include="../BankSphere.FraudInvestigation.Application/BankSphere.FraudInvestigation.Application.csproj" />
     <ProjectReference Include="../BankSphere.FraudInvestigation.Domain/BankSphere.FraudInvestigation.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../BuildingBlocks/BankSphere.Persistence/BankSphere.Persistence.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+  </ItemGroup>
 </Project>

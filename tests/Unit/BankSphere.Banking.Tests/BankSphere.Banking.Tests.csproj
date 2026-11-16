@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" />
+    <PackageReference Include="xunit" />
+    <PackageReference Include="xunit.runner.visualstudio" PrivateAssets="all" />
+    <ProjectReference Include="../../../src/Services/Customers/BankSphere.Customers.Infrastructure/BankSphere.Customers.Infrastructure.csproj" />
+    <ProjectReference Include="../../../src/Services/Accounts/BankSphere.Accounts.Infrastructure/BankSphere.Accounts.Infrastructure.csproj" />
+    <ProjectReference Include="../../../src/Services/Transactions/BankSphere.Transactions.Infrastructure/BankSphere.Transactions.Infrastructure.csproj" />
+    <ProjectReference Include="../../../src/Services/FraudInvestigation/BankSphere.FraudInvestigation.Infrastructure/BankSphere.FraudInvestigation.Infrastructure.csproj" />
+    <ProjectReference Include="../../../src/Services/Compliance/BankSphere.Compliance.Infrastructure/BankSphere.Compliance.Infrastructure.csproj" />
+    <ProjectReference Include="../../../src/Services/CreditAssessment/BankSphere.CreditAssessment.Infrastructure/BankSphere.CreditAssessment.Infrastructure.csproj" />
+    <ProjectReference Include="../../../src/Services/Customers/BankSphere.Customers.Api/BankSphere.Customers.Api.csproj" />
+    <ProjectReference Include="../../../src/Services/Accounts/BankSphere.Accounts.Api/BankSphere.Accounts.Api.csproj" />
+    <ProjectReference Include="../../../src/Services/Transactions/BankSphere.Transactions.Api/BankSphere.Transactions.Api.csproj" />
+    <ProjectReference Include="../../../src/Services/FraudInvestigation/BankSphere.FraudInvestigation.Api/BankSphere.FraudInvestigation.Api.csproj" />
+    <ProjectReference Include="../../../src/Services/Compliance/BankSphere.Compliance.Api/BankSphere.Compliance.Api.csproj" />
+    <ProjectReference Include="../../../src/Services/CreditAssessment/BankSphere.CreditAssessment.Api/BankSphere.CreditAssessment.Api.csproj" />
+  </ItemGroup>
+</Project>

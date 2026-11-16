@@ -1,5 +1,9 @@
 var builder = DistributedApplication.CreateBuilder(args);
 
+builder.AddProject<Projects.BankSphere_Identity_Api>("banksphere-identity-api", launchProfileName: null)
+    .WithHttpsEndpoint(port: 7100, env: "ASPNETCORE_URLS")
+    .WithHttpHealthCheck("/health/ready");
+
 builder.AddProject<Projects.BankSphere_AI_Api>("banksphere-ai-api", launchProfileName: null)
     .WithHttpEndpoint(env: "ASPNETCORE_URLS")
     .WithHttpHealthCheck("/health/ready");

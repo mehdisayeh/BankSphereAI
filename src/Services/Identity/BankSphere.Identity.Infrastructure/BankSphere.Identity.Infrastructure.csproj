@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup>
+    <ProjectReference Include="../BankSphere.Identity.Application/BankSphere.Identity.Application.csproj" />
+    <ProjectReference Include="../BankSphere.Identity.Domain/BankSphere.Identity.Domain.csproj" />
+    <ProjectReference Include="../../../BuildingBlocks/BankSphere.Persistence/BankSphere.Persistence.csproj" />
+    <ProjectReference Include="../../../BuildingBlocks/BankSphere.Security/BankSphere.Security.csproj" />
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+    <PackageReference Include="OpenIddict.Server.AspNetCore" />
+    <PackageReference Include="OpenIddict.EntityFrameworkCore" />
+    <PackageReference Include="MailKit" />
+  </ItemGroup>
+</Project>

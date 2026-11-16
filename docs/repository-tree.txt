@@ -1,152 +1,718 @@
-BankSphereAI/ (generated artifacts and .git/.vs omitted)
-|-- docs/
-|   |-- architecture.md
-|   |-- project-inventory.md
-|   |-- repository-tree.txt
-|   \-- verification.md
-|-- infrastructure/
-|   \-- .gitkeep
-|-- orchestration/
-|   |-- BankSphere.AppHost/
-|   |   |-- Properties/
-|   |   |   \-- launchSettings.json
-|   |   |-- BankSphere.AppHost.csproj
-|   |   \-- Program.cs
-|   \-- BankSphere.ServiceDefaults/
-|       |-- BankSphere.ServiceDefaults.csproj
-|       \-- Extensions.cs
-|-- pipelines/
-|   \-- .gitkeep
-|-- src/
-|   |-- AI/
-|   |   |-- BankSphere.AI.Agents/
-|   |   |   \-- BankSphere.AI.Agents.csproj
-|   |   |-- BankSphere.AI.Api/
-|   |   |   |-- Properties/
-|   |   |   |   \-- launchSettings.json
-|   |   |   |-- appsettings.json
-|   |   |   |-- BankSphere.AI.Api.csproj
-|   |   |   \-- Program.cs
-|   |   |-- BankSphere.AI.Application/
-|   |   |   \-- BankSphere.AI.Application.csproj
-|   |   |-- BankSphere.AI.Contracts/
-|   |   |   \-- BankSphere.AI.Contracts.csproj
-|   |   |-- BankSphere.AI.Domain/
-|   |   |   \-- BankSphere.AI.Domain.csproj
-|   |   |-- BankSphere.AI.Infrastructure/
-|   |   |   \-- BankSphere.AI.Infrastructure.csproj
-|   |   |-- BankSphere.AI.Memory/
-|   |   |   \-- BankSphere.AI.Memory.csproj
-|   |   |-- BankSphere.AI.Orchestration/
-|   |   |   \-- BankSphere.AI.Orchestration.csproj
-|   |   \-- BankSphere.AI.Rag/
-|   |       \-- BankSphere.AI.Rag.csproj
-|   |-- BuildingBlocks/
-|   |   |-- BankSphere.EventBus/
-|   |   |   \-- BankSphere.EventBus.csproj
-|   |   |-- BankSphere.Observability/
-|   |   |   |-- BankSphere.Observability.csproj
-|   |   |   \-- ServiceDefaults.cs
-|   |   |-- BankSphere.Security/
-|   |   |   \-- BankSphere.Security.csproj
-|   |   \-- BankSphere.SharedKernel/
-|   |       |-- AggregateRoot.cs
-|   |       |-- BankSphere.SharedKernel.csproj
-|   |       |-- Entity.cs
-|   |       |-- Error.cs
-|   |       |-- IDomainEvent.cs
-|   |       \-- Result.cs
-|   |-- Gateway/
-|   |   \-- BankSphere.Gateway/
-|   |       |-- BankSphere.Gateway.csproj
-|   |       \-- Program.cs
-|   |-- Integrations/
-|   |   |-- BankSphere.A2AHost/
-|   |   |   |-- BankSphere.A2AHost.csproj
-|   |   |   \-- Program.cs
-|   |   \-- BankSphere.McpServer/
-|   |       |-- BankSphere.McpServer.csproj
-|   |       \-- Program.cs
-|   \-- Services/
-|       |-- Accounts/
-|       |   |-- BankSphere.Accounts.Api/
-|       |   |   |-- BankSphere.Accounts.Api.csproj
-|       |   |   \-- Program.cs
-|       |   |-- BankSphere.Accounts.Application/
-|       |   |   \-- BankSphere.Accounts.Application.csproj
-|       |   |-- BankSphere.Accounts.Domain/
-|       |   |   \-- BankSphere.Accounts.Domain.csproj
-|       |   \-- BankSphere.Accounts.Infrastructure/
-|       |       \-- BankSphere.Accounts.Infrastructure.csproj
-|       |-- Compliance/
-|       |   |-- BankSphere.Compliance.Api/
-|       |   |   |-- BankSphere.Compliance.Api.csproj
-|       |   |   \-- Program.cs
-|       |   |-- BankSphere.Compliance.Application/
-|       |   |   \-- BankSphere.Compliance.Application.csproj
-|       |   |-- BankSphere.Compliance.Domain/
-|       |   |   \-- BankSphere.Compliance.Domain.csproj
-|       |   \-- BankSphere.Compliance.Infrastructure/
-|       |       \-- BankSphere.Compliance.Infrastructure.csproj
-|       |-- CreditAssessment/
-|       |   |-- BankSphere.CreditAssessment.Api/
-|       |   |   |-- BankSphere.CreditAssessment.Api.csproj
-|       |   |   \-- Program.cs
-|       |   |-- BankSphere.CreditAssessment.Application/
-|       |   |   \-- BankSphere.CreditAssessment.Application.csproj
-|       |   |-- BankSphere.CreditAssessment.Domain/
-|       |   |   \-- BankSphere.CreditAssessment.Domain.csproj
-|       |   \-- BankSphere.CreditAssessment.Infrastructure/
-|       |       \-- BankSphere.CreditAssessment.Infrastructure.csproj
-|       |-- Customers/
-|       |   |-- BankSphere.Customers.Api/
-|       |   |   |-- BankSphere.Customers.Api.csproj
-|       |   |   \-- Program.cs
-|       |   |-- BankSphere.Customers.Application/
-|       |   |   \-- BankSphere.Customers.Application.csproj
-|       |   |-- BankSphere.Customers.Domain/
-|       |   |   \-- BankSphere.Customers.Domain.csproj
-|       |   \-- BankSphere.Customers.Infrastructure/
-|       |       \-- BankSphere.Customers.Infrastructure.csproj
-|       |-- FraudInvestigation/
-|       |   |-- BankSphere.FraudInvestigation.Api/
-|       |   |   |-- BankSphere.FraudInvestigation.Api.csproj
-|       |   |   \-- Program.cs
-|       |   |-- BankSphere.FraudInvestigation.Application/
-|       |   |   \-- BankSphere.FraudInvestigation.Application.csproj
-|       |   |-- BankSphere.FraudInvestigation.Domain/
-|       |   |   \-- BankSphere.FraudInvestigation.Domain.csproj
-|       |   \-- BankSphere.FraudInvestigation.Infrastructure/
-|       |       \-- BankSphere.FraudInvestigation.Infrastructure.csproj
-|       \-- Transactions/
-|           |-- BankSphere.Transactions.Api/
-|           |   |-- BankSphere.Transactions.Api.csproj
-|           |   \-- Program.cs
-|           |-- BankSphere.Transactions.Application/
-|           |   \-- BankSphere.Transactions.Application.csproj
-|           |-- BankSphere.Transactions.Domain/
-|           |   \-- BankSphere.Transactions.Domain.csproj
-|           \-- BankSphere.Transactions.Infrastructure/
-|               \-- BankSphere.Transactions.Infrastructure.csproj
-|-- tests/
-|   |-- Architecture/
-|   |   \-- README.md
-|   |-- BankSphere.Foundation.Tests/
-|   |   |-- BankSphere.Foundation.Tests.csproj
-|   |   \-- FoundationTests.cs
-|   |-- Functional/
-|   |   \-- README.md
-|   |-- Integration/
-|   |   \-- README.md
-|   \-- Unit/
-|       \-- README.md
-|-- workers/
-|   \-- .gitkeep
-|-- .editorconfig
-|-- .gitignore
-|-- BankSphereAI.slnx
-|-- Directory.Build.props
-|-- Directory.Packages.props
-|-- global.json
-|-- NuGet.Config
-\-- README.md
+BankSphereAI/
+  .config/
+    dotnet-tools.json
+  .github/
+    workflows/
+  docs/
+    architecture-refactoring.md
+    architecture.md
+    domain-model-catalog.md
+    identity.md
+    migrations-2026-11-16.md
+    project-inventory.md
+    repository-tree.txt
+    verification.md
+  infrastructure/
+    .gitkeep
+  orchestration/
+    BankSphere.AppHost/
+      Properties/
+        launchSettings.json
+      BankSphere.AppHost.csproj
+      Program.cs
+    BankSphere.ServiceDefaults/
+      BankingApi.cs
+      BankSphere.ServiceDefaults.csproj
+      Extensions.cs
+  pipelines/
+    .gitkeep
+  src/
+    AI/
+      BankSphere.AI.Agents/
+        BankSphere.AI.Agents.csproj
+      BankSphere.AI.Api/
+        Properties/
+          launchSettings.json
+        appsettings.json
+        BankSphere.AI.Api.csproj
+        Program.cs
+      BankSphere.AI.Application/
+        BankSphere.AI.Application.csproj
+      BankSphere.AI.Contracts/
+        BankSphere.AI.Contracts.csproj
+      BankSphere.AI.Domain/
+        BankSphere.AI.Domain.csproj
+      BankSphere.AI.Infrastructure/
+        BankSphere.AI.Infrastructure.csproj
+      BankSphere.AI.Memory/
+        BankSphere.AI.Memory.csproj
+      BankSphere.AI.Orchestration/
+        BankSphere.AI.Orchestration.csproj
+      BankSphere.AI.Rag/
+        BankSphere.AI.Rag.csproj
+    BuildingBlocks/
+      BankSphere.EventBus/
+        BankSphere.EventBus.csproj
+      BankSphere.Observability/
+        BankSphere.Observability.csproj
+        ServiceDefaults.cs
+      BankSphere.Persistence/
+        Mapping/
+          BankingMapping.cs
+        Outbox/
+          OutboxDbContext.cs
+          OutboxMessage.cs
+        BankSphere.Persistence.csproj
+      BankSphere.Security/
+        BankingPermissions.cs
+        BankingSecurity.cs
+        BankSphere.Security.csproj
+        BearerForwardingHandler.cs
+        PermissionAuthorizationHandler.cs
+        PermissionRequirement.cs
+      BankSphere.SharedKernel/
+        Domain/
+          AggregateRoot.cs
+          BankingAggregate.cs
+          Entity.cs
+          IDomainEvent.cs
+        Pagination/
+          Page.cs
+          PageRequest.cs
+        Results/
+          BusinessException.cs
+          Error.cs
+          FailureKind.cs
+          Result.cs
+        Security/
+          RequestActor.cs
+        Validation/
+          Guard.cs
+        ValueObjects/
+          Address.cs
+          Currency.cs
+          DateRange.cs
+          EmailAddress.cs
+          Iban.cs
+          Money.cs
+          Percentage.cs
+        BankSphere.SharedKernel.csproj
+    Gateway/
+      BankSphere.Gateway/
+        Properties/
+          launchSettings.json
+        BankSphere.Gateway.csproj
+        Program.cs
+    Integrations/
+      BankSphere.A2AHost/
+        Properties/
+          launchSettings.json
+        BankSphere.A2AHost.csproj
+        Program.cs
+      BankSphere.McpServer/
+        Properties/
+          launchSettings.json
+        BankSphere.McpServer.csproj
+        Program.cs
+    Services/
+      Accounts/
+        BankSphere.Accounts.Api/
+          Endpoints/
+            GetAccountByIdEndpoint.cs
+            OpenAccountEndpoint.cs
+          Extensions/
+            DependencyInjection.cs
+            EndpointRegistrationExtensions.cs
+          Properties/
+            launchSettings.json
+          BankSphere.Accounts.Api.csproj
+          Program.cs
+        BankSphere.Accounts.Application/
+          Abstractions/
+            Persistence/
+              IAccountRepository.cs
+            Services/
+              ICustomerEligibilityGateway.cs
+          DTOs/
+            AccountDetails.cs
+            OwnerDetails.cs
+          Features/
+            GetAccountById/
+              GetAccountByIdHandler.cs
+            OpenAccount/
+              OpenAccount.cs
+              OpenAccountHandler.cs
+          BankSphere.Accounts.Application.csproj
+        BankSphere.Accounts.Domain/
+          Aggregates/
+            BankAccount/
+              AccountBalanceProjection.cs
+              AccountBalanceSnapshot.cs
+              AccountEligibility.cs
+              AccountMandate.cs
+              AccountOwnership.cs
+              AccountRestriction.cs
+              AccountStatus.cs
+              AccountStatusHistory.cs
+              AccountType.cs
+              BalanceSource.cs
+              BankAccount.cs
+              OwnershipType.cs
+          BankSphere.Accounts.Domain.csproj
+        BankSphere.Accounts.Infrastructure/
+          Gateways/
+            CustomerEligibilityGateway.cs
+          Persistence/
+            Configurations/
+              AccountBalanceProjectionConfiguration.cs
+              BankAccountConfiguration.cs
+            Design/
+              AccountsDesignFactory.cs
+            Migrations/
+              20261113155539_InitialAccountsAndOwnership.cs
+              20261113155539_InitialAccountsAndOwnership.Designer.cs
+              20261116094852_AddBalanceSnapshotsAndDefaultSchema.cs
+              20261116094852_AddBalanceSnapshotsAndDefaultSchema.Designer.cs
+              AccountsDbContextModelSnapshot.cs
+            Repositories/
+              AccountRepository.cs
+            AccountsDbContext.cs
+          BankSphere.Accounts.Infrastructure.csproj
+      Compliance/
+        BankSphere.Compliance.Api/
+          Endpoints/
+            GetComplianceCaseEndpoint.cs
+            OpenComplianceCaseEndpoint.cs
+          Extensions/
+            DependencyInjection.cs
+            EndpointRegistrationExtensions.cs
+          Properties/
+            launchSettings.json
+          BankSphere.Compliance.Api.csproj
+          Program.cs
+        BankSphere.Compliance.Application/
+          Abstractions/
+            Persistence/
+              IComplianceRepository.cs
+          DTOs/
+            ComplianceDetails.cs
+          Features/
+            GetComplianceCase/
+              GetComplianceCaseHandler.cs
+            OpenComplianceCase/
+              OpenComplianceCase.cs
+              OpenComplianceCaseHandler.cs
+          BankSphere.Compliance.Application.csproj
+        BankSphere.Compliance.Domain/
+          Aggregates/
+            ComplianceCase/
+              ComplianceCase.cs
+              ComplianceCaseType.cs
+              ComplianceDocumentReference.cs
+              ComplianceReviewHistory.cs
+              ComplianceStatus.cs
+              CustomerDueDiligence.cs
+              KycReview.cs
+              RiskAssessmentFactor.cs
+              RiskClassification.cs
+              ScreeningResult.cs
+          BankSphere.Compliance.Domain.csproj
+        BankSphere.Compliance.Infrastructure/
+          Persistence/
+            Configurations/
+              ComplianceCaseConfiguration.cs
+            Design/
+              ComplianceDesignFactory.cs
+            Migrations/
+              20261113155551_InitialComplianceReviewCases.cs
+              20261113155551_InitialComplianceReviewCases.Designer.cs
+              20261116094902_SetComplianceDefaultSchema.cs
+              20261116094902_SetComplianceDefaultSchema.Designer.cs
+              ComplianceDbContextModelSnapshot.cs
+            Repositories/
+              ComplianceRepository.cs
+            ComplianceDbContext.cs
+          BankSphere.Compliance.Infrastructure.csproj
+      CreditAssessment/
+        BankSphere.CreditAssessment.Api/
+          Endpoints/
+            GetCreditApplicationStatusEndpoint.cs
+            SubmitCreditApplicationEndpoint.cs
+          Extensions/
+            DependencyInjection.cs
+            EndpointRegistrationExtensions.cs
+          Properties/
+            launchSettings.json
+          BankSphere.CreditAssessment.Api.csproj
+          Program.cs
+        BankSphere.CreditAssessment.Application/
+          Abstractions/
+            Persistence/
+              ICreditApplicationRepository.cs
+            Services/
+              ICreditCustomerGateway.cs
+          DTOs/
+            CreditStatus.cs
+          Features/
+            GetCreditApplicationStatus/
+              GetCreditApplicationStatusHandler.cs
+            SubmitCreditApplication/
+              DebtInput.cs
+              DocumentInput.cs
+              IncomeInput.cs
+              ObligationInput.cs
+              SubmitCreditApplication.cs
+              SubmitCreditApplicationHandler.cs
+          Policies/
+            FinancialCalculationPolicy.cs
+          BankSphere.CreditAssessment.Application.csproj
+        BankSphere.CreditAssessment.Domain/
+          Aggregates/
+            CreditApplication/
+              AffordabilityAssessment.cs
+              ApplicantFinancialProfile.cs
+              CollateralReference.cs
+              CreditApplication.cs
+              CreditApplicationStatus.cs
+              CreditAssessment.cs
+              CreditDecisionHistory.cs
+              CreditDecisionRecommendation.cs
+              CreditDocumentReference.cs
+              CreditRecommendation.cs
+              CreditReviewRequest.cs
+              CreditRiskFactor.cs
+              DebtToIncomeAssessment.cs
+              ExistingDebt.cs
+              FinancialObligation.cs
+              IncomeSource.cs
+          Events/
+            CreditApplicationSubmitted.cs
+          Policies/
+            ICreditAssessmentPolicy.cs
+          BankSphere.CreditAssessment.Domain.csproj
+        BankSphere.CreditAssessment.Infrastructure/
+          Gateways/
+            CreditCustomerGateway.cs
+          Persistence/
+            Configurations/
+              CreditApplicationConfiguration.cs
+            Design/
+              CreditAssessmentDesignFactory.cs
+            Migrations/
+              20261113155556_InitialCreditApplicationsAndAssessments.cs
+              20261113155556_InitialCreditApplicationsAndAssessments.Designer.cs
+              20261116094905_MoveToCreditSchema.cs
+              20261116094905_MoveToCreditSchema.Designer.cs
+              CreditAssessmentDbContextModelSnapshot.cs
+            Repositories/
+              CreditApplicationRepository.cs
+            CreditAssessmentDbContext.cs
+          BankSphere.CreditAssessment.Infrastructure.csproj
+      Customers/
+        BankSphere.Customers.Api/
+          Endpoints/
+            CreateCustomerEndpoint.cs
+            GetCustomerByIdEndpoint.cs
+            GetCustomerEligibilityEndpoint.cs
+            UpdateCustomerContactEndpoint.cs
+          Extensions/
+            DependencyInjection.cs
+            EndpointRegistrationExtensions.cs
+          Properties/
+            launchSettings.json
+          BankSphere.Customers.Api.csproj
+          Program.cs
+        BankSphere.Customers.Application/
+          Abstractions/
+            Persistence/
+              ICustomerRepository.cs
+          DTOs/
+            AddressDetails.cs
+            ContactDetails.cs
+            CustomerDetails.cs
+            DocumentDetails.cs
+          Features/
+            CreateCustomer/
+              CreateCustomer.cs
+              CreateCustomerHandler.cs
+            GetCustomerById/
+              GetCustomerByIdHandler.cs
+            GetCustomerEligibility/
+              CustomerEligibility.cs
+              GetCustomerEligibilityHandler.cs
+            UpdateCustomerContact/
+              UpdateCustomerContact.cs
+              UpdateCustomerContactHandler.cs
+          BankSphere.Customers.Application.csproj
+        BankSphere.Customers.Domain/
+          Aggregates/
+            Customer/
+              BeneficialOwner.cs
+              CorporateProfile.cs
+              Customer.cs
+              CustomerAddress.cs
+              CustomerConsent.cs
+              CustomerContact.cs
+              CustomerCountry.cs
+              CustomerRelationship.cs
+              CustomerRiskLevel.cs
+              CustomerRiskProfile.cs
+              CustomerSegment.cs
+              CustomerStatus.cs
+              CustomerType.cs
+              EmploymentStatus.cs
+              FinancialProfile.cs
+              IdentityDocument.cs
+              IndividualProfile.cs
+              KycStatus.cs
+              RiskFactor.cs
+          Events/
+            CustomerCreated.cs
+          BankSphere.Customers.Domain.csproj
+        BankSphere.Customers.Infrastructure/
+          Persistence/
+            Configurations/
+              CustomerConfiguration.cs
+            Design/
+              CustomersDesignFactory.cs
+            Migrations/
+              20261113155415_InitialCustomerProfiles.cs
+              20261113155415_InitialCustomerProfiles.Designer.cs
+              20261116094848_SetCustomersDefaultSchema.cs
+              20261116094848_SetCustomersDefaultSchema.Designer.cs
+              CustomersDbContextModelSnapshot.cs
+            Repositories/
+              CustomerRepository.cs
+            CustomersDbContext.cs
+          BankSphere.Customers.Infrastructure.csproj
+      FraudInvestigation/
+        BankSphere.FraudInvestigation.Api/
+          Endpoints/
+            AttachFraudEvidenceEndpoint.cs
+            GetFraudInvestigationEndpoint.cs
+            OpenFraudInvestigationEndpoint.cs
+            RecordFraudDecisionEndpoint.cs
+            RequestFraudReviewEndpoint.cs
+          Extensions/
+            DependencyInjection.cs
+            EndpointRegistrationExtensions.cs
+          Properties/
+            launchSettings.json
+          BankSphere.FraudInvestigation.Api.csproj
+          Program.cs
+        BankSphere.FraudInvestigation.Application/
+          Abstractions/
+            Persistence/
+              IFraudCaseRepository.cs
+            Services/
+              IInvestigationTransactions.cs
+              TransactionFacts.cs
+          DTOs/
+            EvidenceDetails.cs
+            FraudDetails.cs
+            ReviewDetails.cs
+          Features/
+            AttachFraudEvidence/
+              AttachFraudEvidence.cs
+              FraudEvidenceHandler.cs
+            GetFraudInvestigation/
+              GetFraudInvestigationHandler.cs
+            OpenFraudInvestigation/
+              OpenFraudInvestigation.cs
+              OpenFraudInvestigationHandler.cs
+            RecordFraudDecision/
+              RecordFraudDecision.cs
+              RecordFraudDecisionHandler.cs
+            RequestFraudReview/
+              RequestFraudReview.cs
+              RequestFraudReviewHandler.cs
+          BankSphere.FraudInvestigation.Application.csproj
+        BankSphere.FraudInvestigation.Domain/
+          Aggregates/
+            FraudCase/
+              CaseTransactionLink.cs
+              FraudCase.cs
+              FraudCaseAssignment.cs
+              FraudCaseStatusHistory.cs
+              FraudDecision.cs
+              FraudDecisionClassification.cs
+              FraudIndicator.cs
+              FraudSeverity.cs
+              HumanReviewRequest.cs
+              InvestigationEvidence.cs
+              InvestigationNote.cs
+              InvestigationStatus.cs
+          Events/
+            HumanReviewRequested.cs
+            InvestigationOpened.cs
+          BankSphere.FraudInvestigation.Domain.csproj
+        BankSphere.FraudInvestigation.Infrastructure/
+          Gateways/
+            InvestigationTransactions.cs
+          Persistence/
+            Configurations/
+              FraudCaseConfiguration.cs
+            Design/
+              FraudInvestigationDesignFactory.cs
+            Migrations/
+              20261113155547_InitialInvestigationCasesAndActiveDeduplication.cs
+              20261113155547_InitialInvestigationCasesAndActiveDeduplication.Designer.cs
+              20261116094859_SetFraudDefaultSchema.cs
+              20261116094859_SetFraudDefaultSchema.Designer.cs
+              FraudInvestigationDbContextModelSnapshot.cs
+            Repositories/
+              FraudCaseRepository.cs
+            FraudInvestigationDbContext.cs
+          BankSphere.FraudInvestigation.Infrastructure.csproj
+      Identity/
+        BankSphere.Identity.Api/
+          Contracts/
+            Requests/
+              ChangePasswordRequest.cs
+              RevokeSessionsRequest.cs
+          Endpoints/
+            AntiforgeryEndpoint.cs
+            AuthorizeEndpoint.cs
+            ChangePasswordEndpoint.cs
+            ConfirmEmailEndpoint.cs
+            ForgotPasswordEndpoint.cs
+            GetCurrentUserEndpoint.cs
+            LoginEndpoint.cs
+            LogoutEndpoint.cs
+            RegisterEndpoint.cs
+            ResetPasswordEndpoint.cs
+            RevokeSessionsEndpoint.cs
+            TokenEndpoint.cs
+            ValidateSessionEndpoint.cs
+          Extensions/
+            DependencyInjection.cs
+            EndpointRegistrationExtensions.cs
+            IdentityApplicationExtensions.cs
+            IdentityDatabaseHealthCheck.cs
+            IdentityEndpointHelpers.cs
+          Properties/
+            launchSettings.json
+          appsettings.json
+          BankSphere.Identity.Api.csproj
+          IdentityApiMarker.cs
+          Program.cs
+        BankSphere.Identity.Application/
+          Abstractions/
+            Services/
+              IIdentityNotificationSender.cs
+              IIdentityProtocol.cs
+              IIdentityService.cs
+              IRoleProvisioningService.cs
+          DTOs/
+            UserProfile.cs
+          Features/
+            Authorize/
+              AuthorizeCommand.cs
+              AuthorizeCommandHandler.cs
+              AuthorizeCommandValidator.cs
+            ChangePassword/
+              ChangePasswordCommand.cs
+              ChangePasswordCommandHandler.cs
+              ChangePasswordCommandValidator.cs
+            ConfirmEmail/
+              ConfirmEmailCommand.cs
+              ConfirmEmailCommandHandler.cs
+              ConfirmEmailCommandValidator.cs
+            ExchangeAuthorizationCode/
+              ExchangeAuthorizationCodeCommand.cs
+              ExchangeAuthorizationCodeCommandHandler.cs
+              ExchangeAuthorizationCodeCommandValidator.cs
+            ForgotPassword/
+              ForgotPasswordCommand.cs
+              ForgotPasswordCommandHandler.cs
+              ForgotPasswordCommandValidator.cs
+            GetCurrentUser/
+              GetCurrentUserQuery.cs
+              GetCurrentUserQueryHandler.cs
+              GetCurrentUserQueryValidator.cs
+            GrantRole/
+              GrantRoleCommand.cs
+              GrantRoleCommandHandler.cs
+              GrantRoleCommandValidator.cs
+            Login/
+              LoginCommand.cs
+              LoginCommandHandler.cs
+              LoginCommandValidator.cs
+            Logout/
+              LogoutCommand.cs
+              LogoutCommandHandler.cs
+              LogoutCommandValidator.cs
+            RefreshToken/
+              RefreshTokenCommand.cs
+              RefreshTokenCommandHandler.cs
+              RefreshTokenCommandValidator.cs
+            Register/
+              RegisterCommand.cs
+              RegisterCommandHandler.cs
+              RegisterCommandValidator.cs
+            ResetPassword/
+              ResetPasswordCommand.cs
+              ResetPasswordCommandHandler.cs
+              ResetPasswordCommandValidator.cs
+            RevokeSessions/
+              RevokeSessionsCommand.cs
+              RevokeSessionsCommandHandler.cs
+              RevokeSessionsCommandValidator.cs
+          BankSphere.Identity.Application.csproj
+        BankSphere.Identity.Domain/
+          Auditing/
+            SecurityAuditLog.cs
+          Permissions/
+            Permission.cs
+          Sessions/
+            RefreshToken.cs
+          BankSphere.Identity.Domain.csproj
+        BankSphere.Identity.Infrastructure/
+          BankSphere/
+            Identity/
+              Infrastructure/
+                Migrations/
+                  IdentityDbContextModelSnapshot.cs
+          Identity/
+            ApplicationUser.cs
+            Role.cs
+            RolePermission.cs
+            UserRole.cs
+          Persistence/
+            Configurations/
+              ApplicationUserConfiguration.cs
+              PermissionConfiguration.cs
+              RefreshTokenConfiguration.cs
+              RoleConfiguration.cs
+              RolePermissionConfiguration.cs
+              SecurityAuditLogConfiguration.cs
+              UserRoleConfiguration.cs
+            Design/
+              IdentityDesignFactory.cs
+            Migrations/
+              20261116101820_InitialIdentityAndOidc.cs
+              20261116101820_InitialIdentityAndOidc.Designer.cs
+            IdentityDbContext.cs
+          Services/
+            IdentityInitializer.cs
+            IdentityProtocol.cs
+            IdentityService.cs
+            RoleProvisioningService.cs
+            SecurityAuditWriter.cs
+            SessionValidator.cs
+            SmtpIdentityNotificationSender.cs
+            TokenAuditHandler.cs
+            TokenRedemptionLockMiddleware.cs
+            TokenReuseHandler.cs
+          BankSphere.Identity.Infrastructure.csproj
+          DependencyInjection.cs
+      Transactions/
+        BankSphere.Transactions.Api/
+          Endpoints/
+            GetTransactionByIdEndpoint.cs
+            GetTransactionsByAccountEndpoint.cs
+            IngestSimulationEndpoint.cs
+          Extensions/
+            DependencyInjection.cs
+            EndpointRegistrationExtensions.cs
+          Properties/
+            launchSettings.json
+          BankSphere.Transactions.Api.csproj
+          Program.cs
+        BankSphere.Transactions.Application/
+          Abstractions/
+            Persistence/
+              ITransactionRepository.cs
+            Services/
+              ISimulatorAccountGateway.cs
+          DTOs/
+            TransactionDetails.cs
+          Features/
+            GetTransactionById/
+              GetTransactionByIdHandler.cs
+            GetTransactionsByAccount/
+              GetTransactionsByAccountHandler.cs
+              TransactionFilter.cs
+            IngestSimulation/
+              IngestionResult.cs
+              IngestSimulation.cs
+              IngestSimulationHandler.cs
+          BankSphere.Transactions.Application.csproj
+        BankSphere.Transactions.Domain/
+          Aggregates/
+            BankingTransaction/
+              BankingTransaction.cs
+              CounterpartyDetails.cs
+              MerchantDetails.cs
+              PaymentInstrumentReference.cs
+              SimulatorRecord.cs
+              TransactionDirection.cs
+              TransactionEnrichment.cs
+              TransactionMetadata.cs
+              TransactionRiskSignal.cs
+              TransactionStatus.cs
+              TransactionStatusHistory.cs
+              TransactionType.cs
+          Events/
+            TransactionCreated.cs
+          BankSphere.Transactions.Domain.csproj
+        BankSphere.Transactions.Infrastructure/
+          Gateways/
+            SimulatorAccountGateway.cs
+          Persistence/
+            Configurations/
+              BankingTransactionConfiguration.cs
+            Design/
+              TransactionsDesignFactory.cs
+            Migrations/
+              20261113155543_InitialSyntheticTransactionsAndOutbox.cs
+              20261113155543_InitialSyntheticTransactionsAndOutbox.Designer.cs
+              20261116094855_SetTransactionsDefaultSchema.cs
+              20261116094855_SetTransactionsDefaultSchema.Designer.cs
+              TransactionsDbContextModelSnapshot.cs
+            Repositories/
+              TransactionRepository.cs
+            TransactionsDbContext.cs
+          BankSphere.Transactions.Infrastructure.csproj
+  tests/
+    Architecture/
+      README.md
+    BankSphere.Foundation.Tests/
+      BankSphere.Foundation.Tests.csproj
+      FoundationTests.cs
+    Functional/
+      README.md
+    Integration/
+      BankSphere.Identity.IntegrationTests/
+        AuthenticationTests.cs
+        BankSphere.Identity.IntegrationTests.csproj
+        BrowserCookies.cs
+        CapturingNotifications.cs
+        IdentityFixture.cs
+        UnavailableIdentityHandler.cs
+      BankSphere.Persistence.Tests/
+        BankSphere.Persistence.Tests.csproj
+        SqlDatabase.cs
+        SqlPersistenceTests.cs
+        SqlSchemaVerifier.cs
+      README.md
+    Unit/
+      BankSphere.Banking.Tests/
+        BankSphere.Banking.Tests.csproj
+        DomainTests.cs
+        EndpointContractTests.cs
+        ReadHandlerTests.cs
+      BankSphere.Identity.Tests/
+        BankSphere.Identity.Tests.csproj
+        SecurityTests.cs
+      README.md
+  workers/
+    .gitkeep
+  .editorconfig
+  .gitignore
+  BankSphereAI.slnx
+  Directory.Build.props
+  Directory.Packages.props
+  global.json
+  NuGet.Config
+  README.md

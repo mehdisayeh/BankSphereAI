@@ -3,4 +3,8 @@
     <ProjectReference Include="../BankSphere.CreditAssessment.Application/BankSphere.CreditAssessment.Application.csproj" />
     <ProjectReference Include="../BankSphere.CreditAssessment.Domain/BankSphere.CreditAssessment.Domain.csproj" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../../BuildingBlocks/BankSphere.Persistence/BankSphere.Persistence.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" PrivateAssets="all" />
+  </ItemGroup>
 </Project>

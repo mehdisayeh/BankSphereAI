@@ -1,0 +1,5 @@
+using Microsoft.AspNetCore.Identity;
+
+namespace BankSphere.Identity.Infrastructure;
+
+public sealed class Role : IdentityRole<Guid>;

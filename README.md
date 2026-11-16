@@ -1,14 +1,11 @@
 # BankSphere AI
 
-Enterprise banking investigation platform foundation: .NET 9, C# 13, nullable reference types,
-Clean Architecture, and 43 registered projects. Open `BankSphereAI.slnx` in a Visual Studio
-2022 17.14 or later, which supports .NET 9 and the XML solution format.
+The existing repository contains 52 registered .NET projects. All inherit .NET 9,
+C# 13, nullable reference types, analyzers, and warnings as errors.
+SDK 9.0.302 (or a later 9.0.3xx patch) is selected by global.json.
+Use an IDE supporting the .NET 9 SDK and .slnx format, or the CLI.
 
-## Prerequisites and verification
-
-.NET SDK 9.0.302 or a later 9.0.3xx patch is selected by `global.json`.
-The Aspire SDK is separately pinned in `global.json`; no Aspire workload is required.
-All NuGet package versions are managed in `Directory.Packages.props`.
+## Verify
 
 ```powershell
 dotnet --list-sdks
@@ -16,80 +13,73 @@ dotnet sln BankSphereAI.slnx list
 dotnet restore BankSphereAI.slnx
 dotnet build BankSphereAI.slnx
 dotnet test BankSphereAI.slnx
+dotnet tool restore
 ```
 
-## Run the existing API
+NuGet versions are centralized in Directory.Packages.props. The existing EF tool
+manifest is aligned with EF Core 9.0.23. Prior EF 9 migration history is preserved.
+The SQL integration tests use SQL Express by default, or BANKSPHERE_TEST_SQL_CONNECTION.
+They create and delete uniquely named BankSphereAI_Tests_* or BankSphereAI_IdentityTests_* databases.
+See [verification](docs/verification.md) for current build, migration, and test results.
+
+## Identity and banking authentication
+
+The [Identity guide](docs/identity.md) documents the four-layer service, registered OIDC
+clients, role provisioning, certificate/SMTP configuration, endpoints, and token lifecycle.
+The Identity migration is applied to the shared BankSphereAI_Development database.
+
+All six banking APIs independently validate Identity access tokens through BankSphere.Security.
+The existing six roles/policy names are preserved. Existing policies now also require the
+matching permission and banking scope. Public registration receives no roles; privileged
+roles are assigned only through the explicit deployment command documented in the guide.
+
+Production requires external RSA signing/encryption certificates, protected persistent
+Data Protection keys, an HTTPS issuer/binding, registered HTTPS callbacks, and SMTP settings.
+No private keys or passwords are committed. Development alone can use OpenIddict-generated
+certificates. Account UI and Gateway work remain separate from the Identity API.
+
+## Start the AI API
 
 ```powershell
 dotnet run --project src/AI/BankSphere.AI.Api --no-launch-profile -- --urls http://localhost:5080
-```
-
-```powershell
 curl.exe http://localhost:5080/
 curl.exe http://localhost:5080/health/live
 curl.exe http://localhost:5080/health/ready
 ```
 
-The root returns `{"service":"BankSphere AI","status":"ready"}`. Both probes return
-HTTP 200 and `Healthy`. Stop with Ctrl+C. Readiness currently checks the running process;
-no database, messaging, vector store, or external AI service is registered.
+The root returns {"service":"BankSphere AI","status":"ready"}; both health endpoints
+return HTTP 200 Healthy. Stop with Ctrl+C. This API requires no database or AI credentials.
+Gateway, McpServer, and A2AHost can also run directly with their project paths and a distinct
+port. They provide diagnostic endpoints; protocol tools and proxy routes are not implemented.
 
-Every banking API, integration host, and Gateway is a runnable Web SDK composition root
-with the two health endpoints. Run any one with the same command and its project path,
-choosing a different port. The integration hosts do not yet speak MCP or A2A; the Gateway
-has no proxy routes. None implements business logic.
-
-## Run all HTTP hosts with Aspire
-
-Local verification found a DCP restricted-file-policy blocker on this machine: both the
-system temp path and a workspace-local temp path were rejected for a detected reparse point.
-The AppHost builds, but its dashboard and child-resource startup have not passed here.
-See [the full blocker and diagnostic results](docs/verification.md). The ten hosts were each
-verified directly and remain independently runnable.
+The six existing banking API composition roots require ConnectionStrings__Banking.
+They also contain existing authentication and downstream-service configuration requirements;
+see their Extensions/DependencyInjection.cs files. Their readiness probes check SQL connectivity. Those pre-existing
+implementations were preserved during the framework migration.
 
 ```powershell
 dotnet run --project orchestration/BankSphere.AppHost --launch-profile http
 ```
 
-The local dashboard listens on `http://localhost:15888`; use the login link printed by
-Aspire. Ten HTTP projects are registered with dynamic HTTP endpoints and readiness checks.
-The launch profile enables HTTP transport for local development, binds OTLP to port 18889,
-and the resource service to port 18890. No container resources are registered, so Docker
-is not required for this scaffold. The AppHost starts managed executables, not business
-workers. Use Ctrl+C to stop the AppHost and child resources.
+AppHost registers eleven hosts, with Identity on HTTPS port 7100. Full orchestration still has a previously recorded local
+DCP restricted-file-policy blocker. Banking configuration must also be supplied before the
+six banking APIs can start. Successful full orchestration is not claimed.
 
-`BankSphere.ServiceDefaults` shares the existing observability conventions and adds Aspire
-service discovery and conditional OTLP export. Outside Aspire, telemetry export is disabled
-unless `OTEL_EXPORTER_OTLP_ENDPOINT` is configured. JSON logs always go to stdout.
+## Structure
 
-## Repository structure
+- src/BuildingBlocks: SharedKernel, Observability, EventBus, Security, and existing Persistence.
+- src/Services: seven contexts (six banking contexts plus Identity), each with Api, Application, Domain, and Infrastructure projects.
+- src/AI: nine projects; specialized AI libraries have no implemented AI features.
+- src/Integrations and src/Gateway: Web SDK composition roots.
+- orchestration: Aspire AppHost and ServiceDefaults.
+- tests: Foundation, banking unit/API contracts, SQL persistence, Identity unit/security, and Identity SQL/HTTP integration tests.
+- workers, infrastructure, pipelines: reserved directories with .gitkeep.
 
-- `src/BuildingBlocks`: SharedKernel, Observability, EventBus, Security.
-- `src/Services`: six bounded contexts, each with Api/Application/Domain/Infrastructure projects.
-- `src/AI`: existing four layers plus Agents, Orchestration, Rag, Memory, Contracts libraries.
-- `src/Integrations`: MCP and A2A Web SDK hosts.
-- `src/Gateway`: Web SDK Gateway host.
-- `orchestration`: Aspire AppHost and shared ServiceDefaults library.
-- `tests/BankSphere.Foundation.Tests`: retained primitive tests and expanded architecture checks.
-- `tests/Unit`, `Integration`, `Architecture`, `Functional`: documented locations for future
-  meaningful tests; no empty test assemblies.
-- `workers`, `infrastructure`, `pipelines`: reserved directories.
+The [physical tree](docs/repository-tree.txt) excludes generated bin/obj, Git/IDE metadata,
+and local runtime files. The [project inventory](docs/project-inventory.md) lists every
+registered project, its restored target framework, and all direct project references.
+See [architecture](docs/architecture.md) for dependency decisions.
 
-See the [complete physical source tree](docs/repository-tree.txt),
-[every project, target framework, and reference](docs/project-inventory.md),
-[architecture decisions](docs/architecture.md), and [executed verification](docs/verification.md).
-
-## Conventions and scope
-
-`Directory.Build.props` enables analyzers, style enforcement, deterministic compilation,
-nullable types, implicit usings, and warnings as errors. `.editorconfig` defines formatting.
-`NuGet.Config` uses nuget.org. SharedKernel has no infrastructure or service dependencies.
-
-The domain primitives and existing API response are preserved. New libraries contain only
-project files until real responsibilities justify code. EventBus and Security contain no
-fake abstractions. No entities, CQRS handlers, agents, workflows, RAG pipelines, repositories,
-protocol tools, event consumers, or memory persistence have been implemented.
-
-Database/Redis/messaging adapters, AI SDKs, authentication/authorization, deployment manifests,
-and CI/CD remain future work. These diagnostic hosts must not receive banking data before
-security and deployment configuration are implemented. Never log customer data, tokens, or prompts.
+Identity adds ASP.NET Core Identity, OpenIddict, asymmetric JWTs, PKCE, session revocation,
+and the dedicated identity schema. Existing banking features, schemas, and API routes remain.
+No Gateway proxy implementation or AI functionality was added.

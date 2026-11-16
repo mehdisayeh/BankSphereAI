@@ -8,4 +8,7 @@
     <PackageReference Include="Microsoft.Extensions.ServiceDiscovery" />
     <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../../src/BuildingBlocks/BankSphere.Security/BankSphere.Security.csproj" />
+  </ItemGroup>
 </Project>
